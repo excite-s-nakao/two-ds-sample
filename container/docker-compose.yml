@@ -1,17 +1,28 @@
 version: '3.1'
 
 services:
-
   db1:
     image: mysql:5.7.22
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example1
-      PORT: 13306
+      MYSQL_DATABASE: database
+      PORT: 3306
+    ports:
+      - "13306:3306"
+    volumes:
+      - "./data/mysql1:/var/lib/mysal"
 
   db2:
     image: mysql:5.7.22
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example2
-      PORT: 23306
+      MYSQL_DATABASE: database
+      PORT: 3306
+    ports:
+      - "23306:3306"
+    volumes:
+      - "./data/mysql2:/var/lib/mysal"

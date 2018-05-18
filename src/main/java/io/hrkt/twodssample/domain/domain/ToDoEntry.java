@@ -1,8 +1,10 @@
 package io.hrkt.twodssample.domain.domain;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
-public class ToDoEntry {
+@Builder
+public class TodoEntry {
     private String todo;
 }
