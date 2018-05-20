@@ -50,7 +50,23 @@ public class SingleTodoServiceTest {
 
   @Test
   @Sql(scripts = "/truncate.sql",
-  config = @SqlConfig(dataSource = "datasource1", transactionManager = "txManager1"))
+      config = @SqlConfig(dataSource = "datasource1", transactionManager = "txManager1"))
+  public void save_single_success() {
+
+    serviceThatMayThrowException.resetCounter();
+    serviceThatMayThrowException.disableThrowingExcpetion();
+    val todo = TodoEntry.builder().todo("Buy salt").build();
+    todoService.save(todo);
+    val selected = todoService.getList();
+    assertThat(selected.size()).isEqualTo(1);
+    val expectedList = new ArrayList<>();
+    expectedList.add(todo);
+    assertThat(Arrays.equals(selected.toArray(), expectedList.toArray())).isTrue();
+  }
+
+  @Test
+  @Sql(scripts = "/truncate.sql",
+      config = @SqlConfig(dataSource = "datasource1", transactionManager = "txManager1"))
   public void save_list_success() {
     val todoEntries = createEntries();
     serviceThatMayThrowException.resetCounter();
@@ -64,7 +80,7 @@ public class SingleTodoServiceTest {
 
   @Test
   @Sql(scripts = "/truncate.sql",
-  config = @SqlConfig(dataSource = "datasource1", transactionManager = "txManager1"))
+      config = @SqlConfig(dataSource = "datasource1", transactionManager = "txManager1"))
   public void save_list_fail() {
     val todoEntries = createEntries();
     serviceThatMayThrowException.resetCounter();
@@ -78,5 +94,17 @@ public class SingleTodoServiceTest {
 
     val selected = todoService.getList();
     assertThat(selected.size()).isEqualTo(0);
+  }
+
+  @Test(expected = NullPointerException.class)
+  public void save_multiple_npe_fail() {
+    List<TodoEntry> todos = null;
+    todoService.save(todos);
+  }
+
+  @Test(expected = NullPointerException.class)
+  public void save_single_npe_fail() {
+    TodoEntry todo = null;
+    todoService.save(todo);
   }
 }

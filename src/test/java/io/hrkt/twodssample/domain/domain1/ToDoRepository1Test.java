@@ -20,7 +20,7 @@ public class ToDoRepository1Test {
 
   @Test
   @Sql(scripts = "/truncate.sql",
-  config = @SqlConfig(dataSource = "datasource1", transactionManager = "txManager1"))
+      config = @SqlConfig(dataSource = "datasource1", transactionManager = "txManager1"))
   public void test() {
     val todo1 = TodoEntry.builder().todo("Buy salt").build();
     toDoRepository1.save(todo1);

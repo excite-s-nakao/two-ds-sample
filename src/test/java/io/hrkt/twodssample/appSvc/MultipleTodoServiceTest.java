@@ -49,9 +49,9 @@ public class MultipleTodoServiceTest {
 
   @Test
   @Sql(scripts = "/truncate.sql",
-  config = @SqlConfig(dataSource = "datasource1", transactionManager = "txManager1"))
+      config = @SqlConfig(dataSource = "datasource1", transactionManager = "txManager1"))
   @Sql(scripts = "/truncate.sql",
-  config = @SqlConfig(dataSource = "datasource2", transactionManager = "txManager2"))
+      config = @SqlConfig(dataSource = "datasource2", transactionManager = "txManager2"))
   public void save_single_success() {
     serviceThatMayThrowException.resetCounter();
     serviceThatMayThrowException.disableThrowingExcpetion();
@@ -66,9 +66,9 @@ public class MultipleTodoServiceTest {
 
   @Test
   @Sql(scripts = "/truncate.sql",
-  config = @SqlConfig(dataSource = "datasource1", transactionManager = "txManager1"))
+      config = @SqlConfig(dataSource = "datasource1", transactionManager = "txManager1"))
   @Sql(scripts = "/truncate.sql",
-  config = @SqlConfig(dataSource = "datasource2", transactionManager = "txManager2"))
+      config = @SqlConfig(dataSource = "datasource2", transactionManager = "txManager2"))
   public void save_list_success() {
     val todoEntries = createEntries();
     serviceThatMayThrowException.resetCounter();
@@ -83,9 +83,9 @@ public class MultipleTodoServiceTest {
 
   @Test
   @Sql(scripts = "/truncate.sql",
-  config = @SqlConfig(dataSource = "datasource1", transactionManager = "txManager1"))
+      config = @SqlConfig(dataSource = "datasource1", transactionManager = "txManager1"))
   @Sql(scripts = "/truncate.sql",
-  config = @SqlConfig(dataSource = "datasource2", transactionManager = "txManager2"))
+      config = @SqlConfig(dataSource = "datasource2", transactionManager = "txManager2"))
   public void save_list_fail() {
     val todoEntries = createEntries();
     serviceThatMayThrowException.resetCounter();
@@ -101,5 +101,17 @@ public class MultipleTodoServiceTest {
     assertThat(selected1.size()).isEqualTo(0);
     val selected2 = todoService.getListFrom2();
     assertThat(selected2.size()).isEqualTo(1);
+  }
+
+  @Test(expected = NullPointerException.class)
+  public void save_multiple_npe_fail() {
+    List<TodoEntry> todos = null;
+    todoService.save(todos);
+  }
+
+  @Test(expected = NullPointerException.class)
+  public void save_single_npe_fail() {
+    TodoEntry todo = null;
+    todoService.save(todo);
   }
 }
