@@ -100,6 +100,6 @@ public class MultipleTodoServiceTest {
     val selected1 = todoService.getListFrom1();
     assertThat(selected1.size()).isEqualTo(0);
     val selected2 = todoService.getListFrom2();
-    assertThat(selected2.size()).isEqualTo(0);
+    assertThat(selected2.size()).isEqualTo(1);
   }
 }
