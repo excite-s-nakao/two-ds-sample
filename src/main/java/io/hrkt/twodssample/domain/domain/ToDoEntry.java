@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 @Builder
 public class TodoEntry {
-    private String todo;
+  private String todo;
 }
