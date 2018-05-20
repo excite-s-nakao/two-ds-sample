@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import io.hrkt.twodssample.domain.domain.TodoEntry;
 import io.hrkt.twodssample.domain.domain1.TodoRepository1;
 
-@Mapper
 @Transactional(transactionManager = "txManager1")
 public interface TodoMapper1 extends TodoRepository1 {
   @Override
