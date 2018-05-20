@@ -1,5 +1,4 @@
 # two-ds-sample
 
-WIP
+A sample project for using two datasources in Spring Boot.
 
-first release will appear on 2018/5/21
