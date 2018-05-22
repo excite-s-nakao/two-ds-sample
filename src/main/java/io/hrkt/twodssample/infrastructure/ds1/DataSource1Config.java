@@ -28,7 +28,6 @@ public class DataSource1Config {
 
   @Bean(name = {"datasource1"})
   @Primary
-  @Autowired
   public DataSource datasource1(
       @Qualifier("datasource1Properties") DataSourceProperties properties) {
     return properties.initializeDataSourceBuilder().build();
