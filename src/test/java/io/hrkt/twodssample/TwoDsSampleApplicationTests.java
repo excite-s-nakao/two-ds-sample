@@ -26,5 +26,6 @@ public class TwoDsSampleApplicationTests {
     assertThat(dsMap.size()).isEqualTo(2);
     assertThat(dsMap.get("datasource1")).isNotNull();
     assertThat(dsMap.get("datasource2")).isNotNull();
+    assertThat(dsMap.get("datasource1")).isNotEqualTo(dsMap.get("datasource2"));
   }
 }
