@@ -1,7 +1,6 @@
 package io.hrkt.twodssample.infrastructure.ds1;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.transaction.annotation.Transactional;
 import io.hrkt.twodssample.domain.domain.TodoEntry;

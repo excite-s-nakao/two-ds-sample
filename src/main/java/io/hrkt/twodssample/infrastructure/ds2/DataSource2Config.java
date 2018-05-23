@@ -3,8 +3,7 @@ package io.hrkt.twodssample.infrastructure.ds2;
 import javax.sql.DataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.mapper.MapperFactoryBean;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -14,6 +13,8 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
+@MapperScan(basePackages = {"io.hrkt.twodssample.infrastructure.ds2"},
+    sqlSessionFactoryRef = "sqlSessionFactory2")
 public class DataSource2Config {
 
   @Bean
@@ -39,13 +40,5 @@ public class DataSource2Config {
     SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
     sqlSessionFactory.setDataSource(datasource2);
     return (SqlSessionFactory) sqlSessionFactory.getObject();
-  }
-
-  @Bean(name = {"todoMapper2"})
-  public MapperFactoryBean<TodoMapper2> todoMapper2(
-      @Qualifier("datasource2") DataSource datasource2) throws Exception {
-    MapperFactoryBean<TodoMapper2> factoryBean = new MapperFactoryBean<>(TodoMapper2.class);
-    factoryBean.setSqlSessionFactory(sqlSessionFactory(datasource2));
-    return factoryBean;
   }
 }
