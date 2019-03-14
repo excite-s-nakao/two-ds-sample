@@ -14,8 +14,11 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 @MapperScan(basePackages = {"io.hrkt.twodssample.infrastructure.ds2"},
-    sqlSessionFactoryRef = "sqlSessionFactory2")
+    sqlSessionFactoryRef = DataSource2Config.SQL_SESSION_FACTORY_2)
 public class DataSource2Config {
+  public static final String SQL_SESSION_FACTORY_2 = "sqlSessionFactory2";
+  public static final String DATA_SOURCE_2 = "datasource2";
+  public static final String TX_MANAGER_2 = "txManager2";
 
   @Bean
   @ConfigurationProperties(prefix = "spring.datasource.datasource2")
@@ -23,19 +26,19 @@ public class DataSource2Config {
     return new DataSourceProperties();
   }
 
-  @Bean(name = {"datasource2"})
+  @Bean(name = {DATA_SOURCE_2})
   public DataSource datasource2(
       @Qualifier("datasource2Properties") DataSourceProperties properties) {
     return properties.initializeDataSourceBuilder().build();
   }
 
-  @Bean(name = {"txManager2"})
-  public PlatformTransactionManager txManager2(@Qualifier("datasource2") DataSource dataSource2) {
+  @Bean(name = {TX_MANAGER_2})
+  public PlatformTransactionManager txManager2(@Qualifier(DATA_SOURCE_2) DataSource dataSource2) {
     return new DataSourceTransactionManager(dataSource2);
   }
 
-  @Bean(name = {"sqlSessionFactory2"})
-  public SqlSessionFactory sqlSessionFactory(@Qualifier("datasource2") DataSource datasource2)
+  @Bean(name = {SQL_SESSION_FACTORY_2})
+  public SqlSessionFactory sqlSessionFactory(@Qualifier(DATA_SOURCE_2) DataSource datasource2)
       throws Exception {
     SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
     sqlSessionFactory.setDataSource(datasource2);
