@@ -1,0 +1,12 @@
+spring:
+  datasource:
+      initialization-mode: always
+      datasource1:
+        url: "jdbc:h2:file:./db1;DB_CLOSE_DELAY=-1;INIT=CREATE SCHEMA IF NOT EXISTS \"public\"\\;"
+        driverClassName: org.h2.Driver
+        
+      datasource2:
+        url: "jdbc:h2:file:./db2;DB_CLOSE_DELAY=-1;INIT=CREATE SCHEMA IF NOT EXISTS \"public\"\\;"
+        driverClassName: org.h2.Driver
+
+logging.level.org.springframework.jdbc: debug
