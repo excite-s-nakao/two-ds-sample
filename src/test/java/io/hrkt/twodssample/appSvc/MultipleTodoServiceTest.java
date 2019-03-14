@@ -48,9 +48,9 @@ public class MultipleTodoServiceTest {
   }
 
   @Test
-  @Sql(scripts = "/truncate.sql",
+  @Sql(scripts = {"/schema.sql", "/truncate.sql"},
       config = @SqlConfig(dataSource = "datasource1", transactionManager = "txManager1"))
-  @Sql(scripts = "/truncate.sql",
+  @Sql(scripts = {"/schema.sql", "/truncate.sql"},
       config = @SqlConfig(dataSource = "datasource2", transactionManager = "txManager2"))
   public void save_single_success() {
     serviceThatMayThrowException.resetCounter();

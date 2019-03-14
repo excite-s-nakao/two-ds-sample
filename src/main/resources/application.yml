@@ -1,5 +1,6 @@
 spring:
   datasource:
+      initialization-mode: always
       datasource1:
         url: jdbc:mysql://127.0.0.1:13306/database?useSSL=false&requireSSL=false
         username: root

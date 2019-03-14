@@ -1,1 +1,1 @@
-TRUNCATE todos;
+TRUNCATE TABLE todos;
