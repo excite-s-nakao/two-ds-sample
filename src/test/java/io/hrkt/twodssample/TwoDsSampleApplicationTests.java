@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import io.hrkt.twodssample.infrastructure.ds1.DataSource1Config;
 import io.hrkt.twodssample.infrastructure.ds2.DataSource2Config;
@@ -14,6 +15,7 @@ import lombok.val;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@ActiveProfiles({"test"})
 public class TwoDsSampleApplicationTests {
 
   @Autowired
