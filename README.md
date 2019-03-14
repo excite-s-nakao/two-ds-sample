@@ -31,5 +31,9 @@ $ docker-compose up
 $ ./gradlew test
 ```
 
+## CI
+
+[![CircleCI](https://circleci.com/gh/hrkt/two-ds-sample.svg?style=svg)](https://circleci.com/gh/hrkt/two-ds-sample)
+
 ## notes
 
