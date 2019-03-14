@@ -11,12 +11,12 @@ import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 import io.hrkt.twodssample.domain.domain.TodoEntry;
 import io.hrkt.twodssample.infrastructure.ds1.DataSource1Config;
-import io.hrkt.twodssample.infrastructure.ds2.DataSource2Config;
 import lombok.val;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @RunWith(SpringRunner.class)
 @Slf4j
 @val
+@ActiveProfiles({"test"})
 public class SingleTodoServiceTest {
   @Autowired
   private SingleTodoService todoService;

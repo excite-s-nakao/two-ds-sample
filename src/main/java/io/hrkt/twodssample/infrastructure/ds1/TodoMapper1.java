@@ -13,6 +13,6 @@ public interface TodoMapper1 extends TodoRepository1 {
   public List<TodoEntry> selectList();
 
   @Override
-  @Select("INSERT todos(todo) VALUES(#{todo})")
+  @Select("INSERT INTO todos(todo) VALUES(#{todo})")
   public void save(TodoEntry todoEntry);
 }
