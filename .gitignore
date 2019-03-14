@@ -79,3 +79,5 @@ local.properties
 /.nb-gradle/
 
 .gradle/
+*.db
+*.*.db
